@@ -16,6 +16,7 @@ class TestAddNewContact(unittest.TestCase):
         wd.get("http://localhost/addressbook/addressbook/")
 
     def login(self, wd, username, password):
+        self.open_home_page(wd)
         wd.find_element(By.NAME, "user").click()
         wd.find_element(By.NAME, "user").clear()
         wd.find_element(By.NAME, "user").send_keys(username)
@@ -28,6 +29,7 @@ class TestAddNewContact(unittest.TestCase):
         wd.find_element(By.LINK_TEXT, "add new").click()
 
     def add_address_book_entry(self, wd, addressbook):
+        self.open_add_new_page(wd)
         # fill address book entry
         wd.find_element(By.NAME, "firstname").click()
         wd.find_element(By.NAME, "firstname").clear()
@@ -105,6 +107,7 @@ class TestAddNewContact(unittest.TestCase):
         wd.find_element(By.NAME, "notes").send_keys(addressbook.note)
         # enter address book entry
         wd.find_element(By.XPATH, "//div[@id='content']/form/input[21]").click()
+        self.return_home_page(wd)
 
     def return_home_page(self, wd):
         wd.find_element(By.LINK_TEXT, "home page").click()
@@ -114,14 +117,11 @@ class TestAddNewContact(unittest.TestCase):
 
     def test_add_new_contact(self):
         wd = self.wd
-        self.open_home_page(wd)
         self.login(wd, "admin", "secret")
-        self.open_add_new_page(wd)
         self.add_address_book_entry(wd, Addressbook("Alexander", "Sergeevich", "Pyshkin", "Poet", "Title", "Company LLC",
                                     "Saint-Petersburg", "1234567890", "9876543210", "1472583690", "3692580147",
                                     "alex@mal.com", "alex2@mail.com", "alex3@mail.com", "http://www.pyshkin.com", "17",
                                     "November", "1994", "20", "August", "1999", "Moscow", "my home", "note"))
-        self.return_home_page(wd)
         self.logout(wd)
 
 
