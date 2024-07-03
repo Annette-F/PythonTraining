@@ -2,10 +2,7 @@
 import os
 
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
-from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import NoAlertPresentException
 import unittest
 from selenium.webdriver.common.by import By
 
@@ -17,7 +14,9 @@ class TestAddNewContact(unittest.TestCase):
     
     def test_add_new_contact(self):
         wd = self.wd
+        # open home page
         wd.get("http://localhost/addressbook/addressbook/")
+        # login
         wd.find_element(By.NAME, "user").click()
         wd.find_element(By.NAME, "user").clear()
         wd.find_element(By.NAME, "user").send_keys("admin")
@@ -25,7 +24,9 @@ class TestAddNewContact(unittest.TestCase):
         wd.find_element(By.NAME, "pass").clear()
         wd.find_element(By.NAME, "pass").send_keys("secret")
         wd.find_element(By.XPATH, "//input[@value='Login']").click()
+        # open add new page
         wd.find_element(By.LINK_TEXT, "add new").click()
+        # fill address book entry
         wd.find_element(By.NAME, "firstname").click()
         wd.find_element(By.NAME, "firstname").clear()
         wd.find_element(By.NAME, "firstname").send_keys("Alexander")
@@ -100,20 +101,13 @@ class TestAddNewContact(unittest.TestCase):
         wd.find_element(By.NAME, "notes").click()
         wd.find_element(By.NAME, "notes").clear()
         wd.find_element(By.NAME, "notes").send_keys("note")
+        # enter address book entry
         wd.find_element(By.XPATH, "//div[@id='content']/form/input[21]").click()
+        # return home page
         wd.find_element(By.LINK_TEXT, "home page").click()
+        # logout
         wd.find_element(By.LINK_TEXT, "Logout").click()
     
-    def is_element_present(self, how, what):
-        try: self.wd.find_element(by=how, value=what)
-        except NoSuchElementException as e: return False
-        return True
-    
-    def is_alert_present(self):
-        try: self.wd.switch_to_alert()
-        except NoAlertPresentException as e: return False
-        return True
-
     def tearDown(self):
         self.wd.quit()
 
