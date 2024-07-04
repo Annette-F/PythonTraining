@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import pytest
 from model.addressbook import Addressbook
+import pytest
 from fixture.adbook_application import Adbook_application
 
 
