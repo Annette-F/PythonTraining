@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import pytest
 from model.addressbook import Addressbook
 from fixture.adbook_application import Adbook_application
@@ -14,7 +13,7 @@ def adbook_app(request):
 
 def test_add_new_contact(adbook_app):
     adbook_app.adbook_session.login("admin", "secret")
-    adbook_app.add_address_book_entry(Addressbook("Alexander", "Sergeevich", "Pyshkin", "Poet", "Title", "Company LLC",
+    adbook_app.addressbook.add(Addressbook("Alexander", "Sergeevich", "Pyshkin", "Poet", "Title", "Company LLC",
                                 "Saint-Petersburg", "1234567890", "9876543210", "1472583690", "3692580147",
                                 "alex@mal.com", "alex2@mail.com", "alex3@mail.com", "http://www.pyshkin.com", "17",
                                 "November", "1994", "20", "August", "1999", "Moscow", "my home", "note"))

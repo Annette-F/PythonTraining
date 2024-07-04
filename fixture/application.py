@@ -1,7 +1,7 @@
-import self
 from selenium import webdriver
 from fixture.session import SessionHelper
 from fixture.group import GroupHelper
+
 
 class Application:
 
@@ -14,8 +14,6 @@ class Application:
     def open_home_page(self):
         wd = self.wd
         wd.get("http://localhost/addressbook/addressbook/")
-
-
 
     def destroy(self):
         self.wd.quit()

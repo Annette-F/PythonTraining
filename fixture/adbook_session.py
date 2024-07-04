@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 
 
-
 class AdbookSessionHelper:
 
     def __init__(self, adbook_app):
