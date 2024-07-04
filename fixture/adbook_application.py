@@ -2,27 +2,18 @@ import os
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
+from fixture.adbook_session import AdbookSessionHelper
 
 
 class Adbook_application:
     def __init__(self):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(60)
+        self.adbook_session = AdbookSessionHelper(self)
 
     def open_home_page(self):
         wd = self.wd
         wd.get("http://localhost/addressbook/addressbook/")
-
-    def login(self, username, password):
-        wd = self.wd
-        self.open_home_page()
-        wd.find_element(By.NAME, "user").click()
-        wd.find_element(By.NAME, "user").clear()
-        wd.find_element(By.NAME, "user").send_keys(username)
-        wd.find_element(By.NAME, "pass").click()
-        wd.find_element(By.NAME, "pass").clear()
-        wd.find_element(By.NAME, "pass").send_keys(password)
-        wd.find_element(By.XPATH, "//input[@value='Login']").click()
 
     def open_add_new_page(self):
         wd = self.wd
@@ -113,10 +104,6 @@ class Adbook_application:
     def return_home_page(self):
         wd = self.wd
         wd.find_element(By.LINK_TEXT, "home page").click()
-
-    def logout(self):
-        wd = self.wd
-        wd.find_element(By.LINK_TEXT, "Logout").click()
 
     def adbook_destroy(self):
         self.wd.quit()
