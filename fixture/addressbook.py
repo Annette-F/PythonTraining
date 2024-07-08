@@ -175,6 +175,20 @@ class AdbookHelper:
         # update contact
         wd.find_element(By.XPATH, "//input[@name='update']").click()
 
+    def delete_from_edit_page(self):
+        wd = self.adbook_app.wd
+        # open first contact
+        wd.find_element(By.XPATH, "//img[@title='Edit']").click()
+        # submit delete contact
+        wd.find_element(By.XPATH, "//input[@value='Delete']").click()
+
+    def del_one_contact(self):
+        wd = self.adbook_app.wd
+        wd.find_element(By.XPATH, "//input[@name='selected[]']").click()
+        wd.find_element(By.XPATH, "//input[@value='Delete']").click()
+        wd.switch_to.alert.accept()
+        wd.find_element(By.LINK_TEXT, "home").click()
+
     def return_home_page(self):
         wd = self.adbook_app.wd
         wd.find_element(By.LINK_TEXT, "home page").click()

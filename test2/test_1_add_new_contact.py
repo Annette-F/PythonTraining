@@ -9,3 +9,12 @@ def test_add_new_contact(adbook_app):
                                 "alex@mal.com", "alex2@mail.com", "alex3@mail.com", "http://www.pyshkin.com", "17",
                                 "November", "1994", "20", "August", "1999", "Moscow", "my home", "note"))
     adbook_app.adbook_session.logout()
+
+
+def test_add_second_contact(adbook_app):
+    adbook_app.adbook_session.login("admin", "secret")
+    adbook_app.addressbook.add(Addressbook("", "", "", "", "", "",
+                                "", "", "", "", "",
+                                "", "", "", "", "25",
+                                "April", "1995", "10", "February", "2003", "", "", ""))
+    adbook_app.adbook_session.logout()
