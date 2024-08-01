@@ -43,7 +43,7 @@ class AdbookHelper:
         wd = self.adbook_app.wd
         wd.find_element(By.XPATH, "//img[@title='Edit']").click()
 
-    def delete_from_edit_page(self):
+    def delete_from_modify_page(self):
         wd = self.adbook_app.wd
         self.open_modification_form_first_contact()
         # submit delete contact
