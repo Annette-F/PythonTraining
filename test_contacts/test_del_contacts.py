@@ -1,6 +1,6 @@
-def test_delete_first_contact_from_edit_page(adbook_app):
+def test_delete_first_contact_from_modify_page(adbook_app):
     adbook_app.adbook_session.login(username="admin", password="secret")
-    adbook_app.addressbook.delete_from_edit_page()
+    adbook_app.addressbook.delete_from_modify_page()
     adbook_app.adbook_session.logout()
 
 

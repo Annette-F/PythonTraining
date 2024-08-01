@@ -1,7 +1,9 @@
 class Addressbook:
-    def __init__(self, firstname, middlename, lastname, nickname, title, company, address, phonehome,
-                 mobile, phonework, fax, email, email2, email3, homepage, bday, bmonth, byear, aday,
-                 amonth, ayear, address2, home, note):
+    def __init__(self, firstname=None, middlename=None, lastname=None, nickname=None, title=None, company=None,
+                 address=None, phonehome=None,
+                 mobile=None, phonework=None, fax=None, email=None, email2=None, email3=None, homepage=None, bday=None,
+                 bmonth=None, byear=None, aday=None,
+                 amonth=None, ayear=None, address2=None, home=None, note=None):
         self.firstname = firstname
         self.middlename = middlename
         self.lastname = lastname
