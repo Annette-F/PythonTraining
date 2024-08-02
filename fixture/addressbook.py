@@ -8,7 +8,8 @@ class AdbookHelper:
 
     def open_add_new_page(self):
         wd = self.adbook_app.wd
-        wd.find_element(By.LINK_TEXT, "add new").click()
+        if not (wd.current_url.endswith('/edit.php') and len(wd.find_elements(By.NAME, 'submit')) > 0):
+            wd.find_element(By.LINK_TEXT, "add new").click()
 
     def change_field_value(self, field_name, text):
         wd = self.adbook_app.wd

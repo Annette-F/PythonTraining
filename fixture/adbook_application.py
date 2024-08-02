@@ -7,7 +7,6 @@ class Adbook_application:
 
     def __init__(self):
         self.wd = webdriver.Firefox()
-        self.wd.implicitly_wait(5)
         self.adbook_session = AdbookSessionHelper(self)
         self.addressbook = AdbookHelper(self)
 
