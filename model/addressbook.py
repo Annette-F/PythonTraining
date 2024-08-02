@@ -3,7 +3,7 @@ class Addressbook:
                  address=None, phonehome=None,
                  mobile=None, phonework=None, fax=None, email=None, email2=None, email3=None, homepage=None, bday=None,
                  bmonth=None, byear=None, aday=None,
-                 amonth=None, ayear=None, address2=None, home=None, note=None):
+                 amonth=None, ayear=None, address2=None, home=None, note=None, id=None):
         self.firstname = firstname
         self.middlename = middlename
         self.lastname = lastname
@@ -28,3 +28,4 @@ class Addressbook:
         self.address2 = address2
         self.home = home
         self.note = note
+        self.id = id
