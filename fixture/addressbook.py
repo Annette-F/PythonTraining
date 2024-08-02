@@ -1,6 +1,4 @@
-import os
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
 
 
 class AdbookHelper:
@@ -68,3 +66,7 @@ class AdbookHelper:
     def return_home_page(self):
         wd = self.adbook_app.wd
         wd.find_element(By.LINK_TEXT, "home page").click()
+
+    def count(self):
+        wd = self.adbook_app.wd
+        return len(wd.find_elements(By.NAME, "selected[]"))
