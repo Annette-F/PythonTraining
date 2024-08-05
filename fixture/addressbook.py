@@ -42,13 +42,19 @@ class AdbookHelper:
         wd = self.adbook_app.wd
         wd.find_element(By.XPATH, "//img[@title='Edit']").click()
 
-    def delete_first_contact(self):
+    def select_first_contact(self):
         wd = self.adbook_app.wd
         wd.find_element(By.XPATH, "//input[@name='selected[]']").click()
+
+    def delete_first_contact(self):
+        wd = self.adbook_app.wd
+        self.select_first_contact()
         wd.find_element(By.XPATH, "//input[@value='Delete']").click()
         wd.switch_to.alert.accept()
         wd.find_element(By.LINK_TEXT, "home").click()
         self.contact_cashe = None
+
+
 
     def modify_first_contact(self, new_contact_data):
         wd = self.adbook_app.wd
