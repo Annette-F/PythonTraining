@@ -23,14 +23,11 @@ class AdbookHelper:
     def fill_contact_form(self, addressbook):
         wd = self.adbook_app.wd
         self.change_field_value("firstname", addressbook.firstname)
-        self.change_field_value("middlename", addressbook.middlename)
         self.change_field_value("lastname", addressbook.lastname)
-        self.change_field_value("nickname", addressbook.nickname)
         self.change_field_value("company", addressbook.company)
         self.change_field_value("address", addressbook.address)
-        self.change_field_value("mobile", addressbook.mobile)
+        self.change_field_value("home", addressbook.phonehome)
         self.change_field_value("email", addressbook.email)
-        self.change_field_value("notes", addressbook.note)
 
     def add(self, addressbook):
         wd = self.adbook_app.wd
