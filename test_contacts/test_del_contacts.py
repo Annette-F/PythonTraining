@@ -1,3 +1,5 @@
+from random import randrange
+
 from model.addressbook import Addressbook
 
 
@@ -12,9 +14,9 @@ from model.addressbook import Addressbook
 
 def test_del_first_contact(adbook_app):
     if adbook_app.addressbook.count() == 0:
-        adbook_app.addressbook.add(Addressbook(firstname='Tom', lastname='Soyer'))
+        adbook_app.addressbook.create(Addressbook(firstname='Tom', lastname='Soyer'))
     old_contacts = adbook_app.addressbook.get_contact_list()
-    adbook_app.addressbook.del_one_contact()
+    adbook_app.addressbook.delete_first_contact()
     assert len(old_contacts) - 1 == adbook_app.addressbook.count()
     new_contacts = adbook_app.addressbook.get_contact_list()
     old_contacts[0:1] = []

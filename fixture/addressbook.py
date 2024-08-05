@@ -29,7 +29,7 @@ class AdbookHelper:
         self.change_field_value("home", addressbook.phonehome)
         self.change_field_value("email", addressbook.email)
 
-    def add(self, addressbook):
+    def create(self, addressbook):
         wd = self.adbook_app.wd
         self.open_add_new_page()
         self.fill_contact_form(addressbook)
@@ -42,13 +42,7 @@ class AdbookHelper:
         wd = self.adbook_app.wd
         wd.find_element(By.XPATH, "//img[@title='Edit']").click()
 
-    # def delete_from_modify_page(self):
-    #     wd = self.adbook_app.wd
-    #     self.open_modification_form_first_contact()
-    #     # submit delete contact
-    #     wd.find_element(By.XPATH, "//input[@value='Delete']").click()
-
-    def del_one_contact(self):
+    def delete_first_contact(self):
         wd = self.adbook_app.wd
         wd.find_element(By.XPATH, "//input[@name='selected[]']").click()
         wd.find_element(By.XPATH, "//input[@value='Delete']").click()
