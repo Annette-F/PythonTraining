@@ -36,6 +36,7 @@ class AdbookHelper:
         # enter address book entry
         wd.find_element(By.XPATH, "//div[@id='content']/form/input[21]").click()
         self.return_home_page()
+        self.contact_cashe = None
 
     def open_modification_form_first_contact(self):
         wd = self.adbook_app.wd
@@ -53,6 +54,7 @@ class AdbookHelper:
         wd.find_element(By.XPATH, "//input[@value='Delete']").click()
         wd.switch_to.alert.accept()
         wd.find_element(By.LINK_TEXT, "home").click()
+        self.contact_cashe = None
 
     def modify_first_contact(self, new_contact_data):
         wd = self.adbook_app.wd
@@ -62,6 +64,7 @@ class AdbookHelper:
         # submit modification
         wd.find_element(By.NAME, "update").click()
         self.return_home_page()
+        self.contact_cashe = None
 
     def return_home_page(self):
         wd = self.adbook_app.wd
@@ -71,12 +74,15 @@ class AdbookHelper:
         wd = self.adbook_app.wd
         return len(wd.find_elements(By.NAME, "selected[]"))
 
+    contact_cashe = None
+
     def get_contact_list(self):
-        wd = self.adbook_app.wd
-        # self.open_add_new_page()
-        contacts = []
-        for element in wd.find_elements(By.NAME, 'entry'):
-            text = element.text
-            contact_id = element.find_element(By.NAME, 'selected[]').get_attribute('value')
-            contacts.append(Addressbook(firstname=text, id=contact_id))
-        return contacts
+        if self.contact_cashe is None:
+            wd = self.adbook_app.wd
+            # self.open_add_new_page()
+            self.contact_cashe = []
+            for element in wd.find_elements(By.NAME, 'entry'):
+                text = element.text
+                contact_id = element.find_element(By.NAME, 'selected[]').get_attribute('value')
+                self.contact_cashe.append(Addressbook(firstname=text, id=contact_id))
+        return list(self.contact_cashe)
