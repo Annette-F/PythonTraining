@@ -42,23 +42,39 @@ class AdbookHelper:
         wd = self.adbook_app.wd
         wd.find_element(By.XPATH, "//img[@title='Edit']").click()
 
+    def open_modification_form_contact_by_index(self, index):
+        wd = self.adbook_app.wd
+        wd.find_elements(By.XPATH, "//img[@title='Edit']")[index].click()
+
     def select_first_contact(self):
         wd = self.adbook_app.wd
-        wd.find_element(By.XPATH, "//input[@name='selected[]']").click()
+        wd.find_element(By.NAME, 'selected[]').click()
+
+    def select_contact_by_index(self, index):
+        wd = self.adbook_app.wd
+        wd.find_elements(By.NAME, 'selected[]')[index].click()
 
     def delete_first_contact(self):
         wd = self.adbook_app.wd
-        self.select_first_contact()
+        self.delete_contact_by_index(0)
+        self.contact_cashe = None
+
+    def delete_contact_by_index(self, index):
+        wd = self.adbook_app.wd
+        self.select_contact_by_index(index)
         wd.find_element(By.XPATH, "//input[@value='Delete']").click()
         wd.switch_to.alert.accept()
         wd.find_element(By.LINK_TEXT, "home").click()
         self.contact_cashe = None
 
-
-
     def modify_first_contact(self, new_contact_data):
         wd = self.adbook_app.wd
-        self.open_modification_form_first_contact()
+        self.modify_contact_by_index(0)
+        self.contact_cashe = None
+
+    def modify_contact_by_index(self, index, new_contact_data):
+        wd = self.adbook_app.wd
+        self.open_modification_form_contact_by_index(index)
         # fill modification form
         self.fill_contact_form(new_contact_data)
         # submit modification
