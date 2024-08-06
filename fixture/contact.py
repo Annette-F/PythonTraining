@@ -37,11 +37,11 @@ class ContactHelper:
         self.return_home_page()
         self.contact_cashe = None
 
-    def open_modification_form_first_contact(self):
+    def open_edit_form_first_contact(self):
         wd = self.app.wd
         wd.find_element(By.XPATH, "//img[@title='Edit']").click()
 
-    def open_modification_form_contact_by_index(self, index):
+    def open_edit_form_contact_by_index(self, index):
         wd = self.app.wd
         wd.find_elements(By.XPATH, "//img[@title='Edit']")[index].click()
 
@@ -66,14 +66,14 @@ class ContactHelper:
         wd.find_element(By.LINK_TEXT, 'home').click()
         self.contact_cashe = None
 
-    def modify_first_contact(self, new_contact_data):
+    def edit_first_contact(self):
         wd = self.app.wd
-        self.modify_contact_by_index(0)
+        self.edit_contact_by_index(0)
         self.contact_cashe = None
 
-    def modify_contact_by_index(self, index, new_contact_data):
+    def edit_contact_by_index(self, index, new_contact_data):
         wd = self.app.wd
-        self.open_modification_form_contact_by_index(index)
+        self.open_edit_form_contact_by_index(index)
         # fill modification form
         self.fill_contact_form(new_contact_data)
         # submit modification
@@ -100,3 +100,14 @@ class ContactHelper:
                 contact_id = element.find_element(By.NAME, 'selected[]').get_attribute('value')
                 self.contact_cashe.append(Contact(firstname=text, id=contact_id))
         return list(self.contact_cashe)
+
+
+
+    def get_contact_info_from_edit_page(self, index):
+        wd = self.app.wd
+        self.open_edit_form_contact_by_index(index)
+        firstname = wd.find_element(By.NAME, 'firstname').get_attribute('value')
+        lastname = wd.find_element(By.NAME, 'lastname').get_attribute('value')
+        id = wd.find_element(By.NAME, 'id').get_attribute('value')
+        phonehome = wd.find_element(By.NAME, 'home').get_attribute('value')
+        return Contact(firstname=firstname, lastname=lastname, id=id, phonehome=phonehome)
