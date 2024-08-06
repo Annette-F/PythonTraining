@@ -1,7 +1,7 @@
 from sys import maxsize
 
 
-class Addressbook:
+class Contact:
     def __init__(self, firstname=None, lastname=None, company=None, address=None, phonehome=None, email=None, id=None):
         self.firstname = firstname
         self.lastname = lastname

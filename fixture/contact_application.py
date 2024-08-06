@@ -1,14 +1,14 @@
 from selenium import webdriver
-from fixture.adbook_session import AdbookSessionHelper
-from fixture.addressbook import AdbookHelper
+from fixture.contact_session import SessionHelper
+from fixture.contact import ContactHelper
 
 
-class Adbook_application:
+class Application:
 
     def __init__(self):
         self.wd = webdriver.Firefox()
-        self.adbook_session = AdbookSessionHelper(self)
-        self.addressbook = AdbookHelper(self)
+        self.session = SessionHelper(self)
+        self.contact = ContactHelper(self)
 
     def is_valid(self):
         try:
@@ -21,5 +21,5 @@ class Adbook_application:
         wd = self.wd
         wd.get('http://localhost/addressbook/addressbook/')
 
-    def adbook_destroy(self):
+    def destroy(self):
         self.wd.quit()
