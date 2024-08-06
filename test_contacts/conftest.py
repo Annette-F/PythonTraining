@@ -12,7 +12,7 @@ def adbook_app(request):
     else:
         if not adbook_fixture.is_valid():
             adbook_fixture = Adbook_application()
-    adbook_fixture.adbook_session.ensure_login(username="admin", password="secret")
+    adbook_fixture.adbook_session.ensure_login(username='admin', password='secret')
     return adbook_fixture
 
 

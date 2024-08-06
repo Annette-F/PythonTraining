@@ -19,7 +19,7 @@ class Adbook_application:
 
     def open_home_page(self):
         wd = self.wd
-        wd.get("http://localhost/addressbook/addressbook/")
+        wd.get('http://localhost/addressbook/addressbook/')
 
     def adbook_destroy(self):
         self.wd.quit()

@@ -11,7 +11,7 @@ class AdbookHelper:
     def open_add_new_page(self):
         wd = self.adbook_app.wd
         if not (wd.current_url.endswith('/edit.php') and len(wd.find_elements(By.NAME, 'submit')) > 0):
-            wd.find_element(By.LINK_TEXT, "add new").click()
+            wd.find_element(By.LINK_TEXT, 'add new').click()
 
     def change_field_value(self, field_name, text):
         wd = self.adbook_app.wd
@@ -22,12 +22,12 @@ class AdbookHelper:
 
     def fill_contact_form(self, addressbook):
         wd = self.adbook_app.wd
-        self.change_field_value("firstname", addressbook.firstname)
-        self.change_field_value("lastname", addressbook.lastname)
-        self.change_field_value("company", addressbook.company)
-        self.change_field_value("address", addressbook.address)
-        self.change_field_value("home", addressbook.phonehome)
-        self.change_field_value("email", addressbook.email)
+        self.change_field_value('firstname', addressbook.firstname)
+        self.change_field_value('lastname', addressbook.lastname)
+        self.change_field_value('company', addressbook.company)
+        self.change_field_value('address', addressbook.address)
+        self.change_field_value('home', addressbook.phonehome)
+        self.change_field_value('email', addressbook.email)
 
     def create(self, addressbook):
         wd = self.adbook_app.wd
@@ -64,7 +64,7 @@ class AdbookHelper:
         self.select_contact_by_index(index)
         wd.find_element(By.XPATH, "//input[@value='Delete']").click()
         wd.switch_to.alert.accept()
-        wd.find_element(By.LINK_TEXT, "home").click()
+        wd.find_element(By.LINK_TEXT, 'home').click()
         self.contact_cashe = None
 
     def modify_first_contact(self, new_contact_data):
@@ -78,17 +78,17 @@ class AdbookHelper:
         # fill modification form
         self.fill_contact_form(new_contact_data)
         # submit modification
-        wd.find_element(By.NAME, "update").click()
+        wd.find_element(By.NAME, 'update').click()
         self.return_home_page()
         self.contact_cashe = None
 
     def return_home_page(self):
         wd = self.adbook_app.wd
-        wd.find_element(By.LINK_TEXT, "home page").click()
+        wd.find_element(By.LINK_TEXT, 'home page').click()
 
     def count(self):
         wd = self.adbook_app.wd
-        return len(wd.find_elements(By.NAME, "selected[]"))
+        return len(wd.find_elements(By.NAME, 'selected[]'))
 
     contact_cashe = None
 

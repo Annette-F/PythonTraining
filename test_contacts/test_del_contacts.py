@@ -20,5 +20,5 @@ def test_del_some_contact(adbook_app):
     adbook_app.addressbook.delete_contact_by_index(index)
     assert len(old_contacts) - 1 == adbook_app.addressbook.count()
     new_contacts = adbook_app.addressbook.get_contact_list()
-    old_contacts[index:index+1] = []
+    old_contacts[index:index + 1] = []
     assert old_contacts == new_contacts
